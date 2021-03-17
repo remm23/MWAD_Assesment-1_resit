@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import Customers from './Customers';
+import CustomerPanelModal from './CustomerPanelModal';
 // Styles from react bootstrap
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 
-const CustomerPanel = (props) => {
 
+const CustomerPanel = (props) => {
+	let message;
+	let customer;
 	// hooks for input
 	const [id,setId] = useState('');
 	const [name,setName] = useState('');
 	const [address,setAddress] = useState('');
 	const [company,setCompany] = useState('');
 	const [regiDate,setRegiDate] = useState('');
+
+	const [show, setShow] = useState(false);
+
+	const handleShow = () => setShow(true);
 
 	return (
 		<div className="component">
@@ -90,22 +97,24 @@ const CustomerPanel = (props) => {
 
 				<Form.Group>
 					<Button type="submit" value="Add Data" onClick={(event) => {
-							let message;
 							// prevent default form action
 							event.preventDefault();
-
-							if (id && name && address && address && company && regiDate) {
-								message = `${id}, ${name}, ${address}, ${company}, ${regiDate}`; 
-							} else {
-								message = "Not all fields have been filled out";
-							}
-							window.alert(message);
+							
 						}
 					}>Submit</Button>
+					<CustomerPanelModal/>
 				</Form.Group>
 			</Form>
+			
 		</div>		
 	)
 }
 
 export default CustomerPanel;
+
+// if (id && name && address && address && company && regiDate) {
+// 	// message = `${id}, ${name}, ${address}, ${company}, ${regiDate}`; 
+// 	customer= { id, name, address, company, regiDate }
+// } else {
+// 	message = "Not all fields have been filled out";
+// }
