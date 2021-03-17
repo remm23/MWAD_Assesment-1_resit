@@ -1,10 +1,10 @@
 import React from 'react';
-import CustomerPanel from './CustomerPanel'
 
 
 const Customer = (props)  => {
 
 	return (
+		// table row for customer data to be display customer info
 		<tr>
 			<td>{props.id}</td>
 			<td>{props.name}</td>

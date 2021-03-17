@@ -1,14 +1,17 @@
 import './App.css';
-import CustomerPanel from './components/CustomerPanel'
+import { Container } from 'react-bootstrap';
+import CustomerPanel from './components/CustomerPanel';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
-    <div className="App">
+    <Container className="App">
       <h1>
-        Happy Hacking
+        Assignment 1 - RESIT
       </h1>
       <CustomerPanel/>
-    </div>
+    </Container>
   );
 }
 

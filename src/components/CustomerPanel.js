@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import Customer from './Customer'
-import fakeData from '../fake_data/FakeData'
+import Customers from './Customers';
+// Styles from react bootstrap
+import Form from 'react-bootstrap/Form';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 
 const CustomerPanel = (props) => {
@@ -14,7 +17,7 @@ const CustomerPanel = (props) => {
 
 	return (
 		<div className="component">
-			<table>
+			<Table>
 				<tr>
 					<th>Id</th>
 					<th>Name</th>
@@ -22,74 +25,85 @@ const CustomerPanel = (props) => {
 					<th>Company Name</th>
 					<th>Registration Date</th>
 				</tr>
-				{fakeData.map( customer => 
-				// pass fake data via props to Customer component
-					<Customer 
-						id={customer.id}
-						name={customer.name}
-						address={customer.address}
-						companyName={customer.companyName}
-						regiDate={customer.registrationDate}
+				{
+					// Customers component that displays the customers in the table
+				}
+				<Customers/>
+			</Table>
+
+			{
+				// remove br after addind styles
+			}
+			<br/>  
+
+			<Form>
+				<Form.Group>
+					<Form.Label>Id</Form.Label>
+					<Form.Control 
+						type="text"
+						placeholder="id: 1234"
+						value={id}
+						onChange={event => setId(event.target.value)}
 					/>
-				)}
-			</table>
+				</Form.Group>
 
-			<br/>
+				<Form.Group>
+					<Form.Label for="name">Name</Form.Label>
+					<Form.Control 
+						type="text"
+						placeholder="Bob Jones"
+						value={name}
+						onChange={event => setName(event.target.value)}
+					/>
+				</Form.Group>
+				
+				<Form.Group>
+					<Form.Label for="address">Address</Form.Label>
+					<Form.Control 
+						type="text"
+						placeholder="64 Zoo lane"
+						value={address}
+						onChange={event => setAddress(event.target.value)}
+					/>
+				</Form.Group>
 
-			<form>
-				<lable for="id">Id</lable>
-				<input 
-					type="text"
-					placeholder="id: 1234"
-					value={id}
-					onChange={event => setId(event.target.value)}
-				/>
-
-				<lable for="name">Name</lable>
-				<input 
-					type="text"
-					placeholder="Bob Jones"
-					value={name}
-					onChange={event => setName(event.target.value)}
-				/>
-
-				<lable for="address">Address</lable>
-				<input 
-					type="text"
-					placeholder="64 Zoo lane"
-					value={address}
-					onChange={event => setAddress(event.target.value)}
-				/>
-
-				<lable for="company name">Company Name</lable>
-				<input 
+				<Form.Group>
+				<Form.Label for="company name">Company Name</Form.Label>
+				<Form.Control 
 					type="text"
 					placeholder="Amazon, intel"
 					value={company}
 					onChange={event => setCompany(event.target.value)}
 				/>
 
-				<lable for="registration date">Registration Date</lable>
-				<input 
-					type="text"
-					placeholder="1/1/1970"
-					value={regiDate}
-					onChange={event => setRegiDate(event.target.value)}
-				/>
+				</Form.Group>
 
-				<input type="submit" value="Add Data" onClick={(event) => {
-					let message;
-					// prevent default form action
-					event.preventDefault();
+				<Form.Group>
+					<Form.Label for="registration date">Registration Date</Form.Label>
+					<Form.Control 
+						type="text"
+						placeholder="1/1/1970"
+						value={regiDate}
+						onChange={event => setRegiDate(event.target.value)}
+					/>
+				</Form.Group>
 
-					if (id && name && address && address && company && regiDate) {
-						message = `${id}, ${name}, ${address}, ${company}, ${regiDate}`; 
-					} else {
-						message = "Not all fields have been filled out";
-					}
-					window.alert(message);
-				}}/>
-			</form>
+				<Form.Group>
+					<Button type="submit" value="Add Data" onClick={(event) => {
+							let message;
+							// prevent default form action
+							event.preventDefault();
+
+							if (id && name && address && address && company && regiDate) {
+								message = `${id}, ${name}, ${address}, ${company}, ${regiDate}`; 
+							} else {
+								message = "Not all fields have been filled out";
+							}
+							window.alert(message);
+						}
+					}>Submit</Button>
+				</Form.Group>
+			</Form>
 		</div>		
 	)
 }
