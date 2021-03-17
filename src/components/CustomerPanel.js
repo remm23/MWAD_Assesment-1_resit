@@ -4,13 +4,9 @@ import CustomerPanelModal from './CustomerPanelModal';
 // Styles from react bootstrap
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
 
+const CustomerPanel = () => {
 
-
-const CustomerPanel = (props) => {
-	let message;
-	let customer;
 	// hooks for input
 	const [id,setId] = useState('');
 	const [name,setName] = useState('');
@@ -18,12 +14,11 @@ const CustomerPanel = (props) => {
 	const [company,setCompany] = useState('');
 	const [regiDate,setRegiDate] = useState('');
 
-	const [show, setShow] = useState(false);
-
-	const handleShow = () => setShow(true);
-
+	const customer = {id,name,address,company,regiDate};
+	// const customer = "code is cool";
 	return (
 		<div className="component">
+			{/* Table to display all customer data */}
 			<Table>
 				<tr>
 					<th>Id</th>
@@ -46,10 +41,12 @@ const CustomerPanel = (props) => {
 			<Form>
 				<Form.Group>
 					<Form.Label>Id</Form.Label>
+					{/* Text field for customer input */}
 					<Form.Control 
 						type="text"
 						placeholder="id: 1234"
 						value={id}
+						// event for changing text in input field
 						onChange={event => setId(event.target.value)}
 					/>
 				</Form.Group>
@@ -96,25 +93,18 @@ const CustomerPanel = (props) => {
 				</Form.Group>
 
 				<Form.Group>
-					<Button type="submit" value="Add Data" onClick={(event) => {
-							// prevent default form action
-							event.preventDefault();
-							
-						}
-					}>Submit</Button>
-					<CustomerPanelModal/>
+					<CustomerPanelModal
+					// props to pass to modal panel
+						id={id}
+						name={name}
+						address={address}
+						company={company}
+						regiDate={regiDate}
+					/>
 				</Form.Group>
 			</Form>
-			
 		</div>		
 	)
 }
 
 export default CustomerPanel;
-
-// if (id && name && address && address && company && regiDate) {
-// 	// message = `${id}, ${name}, ${address}, ${company}, ${regiDate}`; 
-// 	customer= { id, name, address, company, regiDate }
-// } else {
-// 	message = "Not all fields have been filled out";
-// }

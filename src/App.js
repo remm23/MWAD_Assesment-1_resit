@@ -13,7 +13,6 @@ function App() {
         Assignment 1 - RESIT
       </h1>
       <CustomerPanel/>
-      {/* <CustomerPanelModal/> */}
     </Container>
   );
 }
